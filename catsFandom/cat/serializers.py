@@ -24,7 +24,7 @@ class CatSerializer(serializers.ModelSerializer):
         slug = slug.lower()
         # Замена пробелов на дефисы
         slug = slug.replace(' ', '-')
-        slug = re.sub(r'[^a-zA-Z-]', '', slug)
+        slug = re.sub(r'[^a-zA-Z-\d]', '', slug)
 
         validated_data['slug'] = slug
         return super().create(validated_data)

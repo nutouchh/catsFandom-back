@@ -14,6 +14,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+import django_restful_admin
 from django.contrib import admin
 from django.urls import path, include, re_path
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
@@ -23,21 +24,16 @@ from cat.views import *
 from django.conf import settings
 from django.conf.urls.static import static
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/cat-auth/', include('rest_framework.urls')),
     path('api/v1/cat/', CatAPIList.as_view()),
     path('api/v1/cat/<slug:slug>/', CatAPIUpdate.as_view()),
     path('api/v1/catdelete/<slug:slug>/', CatAPIDestroy.as_view()),
-    # path('api/v1/auth/', include('djoser.urls')),
-    # re_path(r'^auth/', include('djoser.urls.authtoken')),
-    # path('api/v1/auth/', include('djoser.urls')),  # new
-    # re_path(r'^auth/', include('djoser.urls.authtoken')),  # new
-    # path('api/v1/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    # path('api/v1/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    # path('api/v1/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
+    path('api/v1/user_cats/<str:username>/', UserCatListView.as_view(), name='user_cats'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-urlpatterns += accounts_urlpatterns # add URLs for authentication
-# eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1MTA4NjA1LCJpYXQiOjE3MTUwMjIyMDUsImp0aSI6IjhiZDllOGNhMDgwZTRlMmE4NTdjMjQ2MmRmNWMwNTYyIiwidXNlcl9pZCI6MX0.tBCctWXCgtMoEtJfEl119WEn8Iasg__tHjUju7IgVB8
+urlpatterns += accounts_urlpatterns
+

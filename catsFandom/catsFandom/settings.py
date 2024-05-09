@@ -57,6 +57,11 @@ MIDDLEWARE = [
 
 CORS_ORIGIN_ALLOW_ALL = True
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000"
+]
+
 ROOT_URLCONF = 'catsFandom.urls'
 
 TEMPLATES = [
@@ -197,6 +202,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')  # Путь к каталогу д
 
 
 DJOSER = {
-    "USER_ID_FIELD": "username"
+    "USER_ID_FIELD": "username",
+    'SERIALIZERS': {
+        'user': 'accounts.serializers.CustomUserSerializer',
+    }
+
 }
 
