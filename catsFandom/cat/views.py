@@ -11,7 +11,7 @@ from .serializers import CatSerializer
 class CatAPIList(generics.ListCreateAPIView):
     queryset = Cat.objects.all()
     serializer_class = CatSerializer
-    # permission_classes = (IsAuthenticatedOrReadOnly, )
+    permission_classes = (IsAuthenticatedOrReadOnly, )
     authentication_classes = (TokenAuthentication,)
     lookup_field = 'slug'
     # pagination_class = CatAPIListPagination
