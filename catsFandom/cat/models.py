@@ -20,7 +20,6 @@ class Cat(models.Model):
     time_create = models.DateTimeField(auto_now_add=True)
     time_update = models.DateTimeField(auto_now=True)
     is_published = models.BooleanField(default=True)
-    # category = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True)
     user = models.ForeignKey(User, verbose_name='Пользователь', null=True,  on_delete=models.SET_NULL)
     slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")
     photo = models.ImageField(upload_to=get_upload_path, null=True, blank=True, verbose_name="photo")
