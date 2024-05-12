@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-+a$eczscy$qs&x=a)+&n(2^f3!d9#p)zlu1jk=90#ulei@+2b9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', '78.24.223.20', 'fandomcat']
 
 # Application definition
 
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'djoser',
     'rest_framework.authtoken',
     'accounts',
+    'django.contrib.postgres',
 ]
 
 MIDDLEWARE = [
@@ -59,7 +60,9 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "http://127.0.0.1:3000"
+    "http://127.0.0.1:3000",
+    "http://78.24.223.20:3000",
+    "http://fandomcat:3000",
 ]
 
 ROOT_URLCONF = 'catsFandom.urls'
@@ -91,7 +94,7 @@ DATABASES = {
         'NAME': 'catsFandom',
         'USER': 'postgres',
         'PASSWORD': '1234',
-        "HOST": "127.0.0.1",
+        "HOST": "pgdb",
         "PORT": "5432",
     }
 }
